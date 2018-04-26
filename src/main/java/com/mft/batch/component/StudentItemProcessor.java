@@ -1,9 +1,9 @@
-package com.mtp.config;
+package com.mft.batch.component;
 
 import org.springframework.batch.item.ItemProcessor;
 
-import com.mtp.model.Marksheet;
-import com.mtp.model.Student;
+import com.mft.model.Marksheet;
+import com.mft.model.Student;
 public class StudentItemProcessor implements ItemProcessor<Student, Marksheet> {
     
 	@Override

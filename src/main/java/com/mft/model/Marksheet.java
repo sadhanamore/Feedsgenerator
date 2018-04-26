@@ -1,4 +1,4 @@
-package com.mtp.model;
+package com.mft.model;
 
 public class Marksheet {
 	private String stdId;

@@ -1,4 +1,4 @@
-package com.mtp.config;
+package com.mft.config;
 
 import javax.sql.DataSource;
 
@@ -18,8 +18,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import com.mtp.model.Marksheet;
-import com.mtp.model.Student;
+import com.mft.batch.component.StudentItemProcessor;
+import com.mft.factory.ReaderFactory;
+import com.mft.factory.WriterFactory;
+import com.mft.model.Marksheet;
+import com.mft.model.Student;
 
 @Configuration
 @EnableBatchProcessing
@@ -39,8 +42,7 @@ public class BatchConfiguration {
     public ItemWriter<Marksheet> writer() {
 		System.out.println("Inside writer");
     	WriterFactory<Marksheet> writerFactory = new WriterFactory<Marksheet>();
-    	ItemWriter<Marksheet> writer = writerFactory.getWriter("FileWriter");
-    	
+    	ItemWriter<Marksheet> writer = writerFactory.getWriter("AzureBlobWriter");
     	return writer;
     }
 	@Bean
@@ -49,7 +51,7 @@ public class BatchConfiguration {
     }
 	@Bean
     public Job createMarkSheet(JobBuilderFactory jobs, Step step) {
-        return jobs.get("createMarkSheet5")
+        return jobs.get("createMarkSheet6")
                 .flow(step)
                 .end()
                 .build();
@@ -58,7 +60,7 @@ public class BatchConfiguration {
     public Step step(StepBuilderFactory stepBuilderFactory, ItemReader<Student> reader,
             ItemWriter<Marksheet> writer, ItemProcessor<Student, Marksheet> processor) {
         return stepBuilderFactory.get("step")
-                .<Student, Marksheet> chunk(5)
+                .<Student, Marksheet> chunk(2)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)

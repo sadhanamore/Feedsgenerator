@@ -1,4 +1,4 @@
-package com.mtp.config;
+package com.mft.batch.component;
 
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -6,11 +6,11 @@ import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.core.io.ClassPathResource;
 
-import com.mtp.model.Student;
+import com.mft.model.Student;
 
 
 
-public class Reader {
+public class ReaderRepo {
 
 	
 public FlatFileItemReader<Student> getFlatfileReader() {
@@ -25,8 +25,6 @@ public FlatFileItemReader<Student> getFlatfileReader() {
                 setTargetType(Student.class);
             }});
         }});
-		
-		
 		
 		return  reader;
 	}

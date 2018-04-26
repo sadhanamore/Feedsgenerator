@@ -1,4 +1,4 @@
-package com.mtp.model;
+package com.mft.model;
 
 public class Student {
 	private String stdId;

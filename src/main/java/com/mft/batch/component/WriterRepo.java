@@ -1,15 +1,14 @@
-package com.mtp.config;
+package com.mft.batch.component;
 
 import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.core.io.ClassPathResource;
 
-import com.mtp.model.Marksheet;
+import com.mft.model.Marksheet;
 
 
-public class Writer {
-
+public class WriterRepo {
 	
 	public FlatFileItemWriter<Marksheet> getFlatfileWriter() {
 	FlatFileItemWriter<Marksheet> writer = new FlatFileItemWriter<Marksheet>();
@@ -22,4 +21,5 @@ public class Writer {
 	writer.setLineAggregator(delLineAgg);
     return writer;
 	}
+	
 }

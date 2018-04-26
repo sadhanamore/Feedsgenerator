@@ -1,10 +1,11 @@
-package com.mtp.config;
+package com.mft.factory;
 import org.springframework.batch.item.ItemReader;
 
-import com.mtp.model.Student;
+import com.mft.batch.component.ReaderRepo;
+import com.mft.model.Student;
 public class ReaderFactory<T> {
 	
-	Reader reader = new Reader();
+	ReaderRepo reader = new ReaderRepo();
 	
 
 	public ItemReader<Student> getReader(String readerType){
