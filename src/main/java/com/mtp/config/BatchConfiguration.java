@@ -38,15 +38,10 @@ public class BatchConfiguration {
 	@Bean
     public ItemWriter<Marksheet> writer() {
 		System.out.println("Inside writer");
-    	FlatFileItemWriter<Marksheet> writer = new FlatFileItemWriter<Marksheet>();
-    	writer.setResource(new ClassPathResource("student-marks.csv"));
-    	DelimitedLineAggregator<Marksheet> delLineAgg = new DelimitedLineAggregator<Marksheet>();
-    	delLineAgg.setDelimiter(",");
-    	BeanWrapperFieldExtractor<Marksheet> fieldExtractor = new BeanWrapperFieldExtractor<Marksheet>();
-    	fieldExtractor.setNames(new String[] {"stdId", "totalSubMark"});
-    	delLineAgg.setFieldExtractor(fieldExtractor);
-    	writer.setLineAggregator(delLineAgg);
-        return writer;
+    	WriterFactory<Marksheet> writerFactory = new WriterFactory<Marksheet>();
+    	ItemWriter<Marksheet> writer = writerFactory.getWriter("FileWriter");
+    	
+    	return writer;
     }
 	@Bean
     public ItemProcessor<Student, Marksheet> processor() {
